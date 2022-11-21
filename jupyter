@@ -1,0 +1,55 @@
+# program
+
+import matplotlib
+from matplotlib import pyplot as plt
+import pandas as pd
+import seaborn as sns
+import numpy as np
+
+df=pd.read_csv('mtcars.csv')
+df=df.head()
+print("Data Set :\n")
+print(df)
+
+fig=plt.figure()
+plt.title('Histogram')
+plt.hist(df['mpg'],bins=3)
+
+fig=plt.figure()
+x=df.wt
+y=df.mpg
+plt.xlabel("weight of the car")
+plt.ylabel("MPG")
+plt.title('Scatter plot to determine the relationship between weight of the car and mpg')
+plt.scatter(x,y)
+
+fig=plt.figure()
+plt.title('Bar Graph')
+x=df.model
+y=df.mpg
+plt.bar(x,y)
+df=pd.read_csv('mtcars.csv')
+fig=plt.figure()
+plt.title('Box plot of MPG')
+sns.boxplot(df['mpg'])
+
+print("Interprting the fiv - number summary:\n")
+
+print(np.mean(df.mpg))
+print(np.sum(df.mpg))
+print(np.median(df.mpg))
+print(np.std(df.mpg))
+print(np.var(df.mpg))
+
+
+
+import pandas as pd
+df = pd.DataFrame({
+'book_name':['Book1','Book2','Book3','Book4','Book1','Book2','Book3','Book5'],
+'book_type':['Math','Physics','Computer','Science','Math','Physics','Computer','English'],
+'book_id':[1,2,3,4,1,2,3,5]})
+print("Original Orders DataFrame:\n")
+print(df)
+print("\nNew column with count from groupby:\n")
+result = df.groupby(["book_name", "book_type"])["book_type"].count().reset_index(name="count")
+print(result)
